@@ -24,15 +24,15 @@ const oAuthInfo = new OAuthInfo({
 });
 
 // onderstaande blok is nodig om de je login op te slaan in de bijlage
-const storedLoginObject = localStorage.getItem("storedLogin");
-  if (storedLoginObject != null) {
-      esriId.initialize(JSON.parse(storedLoginObject));
-  } else {
+// const storedLoginObject = localStorage.getItem("storedLogin");
+//   if (storedLoginObject != null) {
+//       esriId.initialize(JSON.parse(storedLoginObject));
+//   } else {
       esriId.registerOAuthInfos([oAuthInfo]);
-  }
-  esriId.on("credential-create", function (e) {
-      localStorage.setItem("storedLogin", JSON.stringify(esriId.toJSON()));
-  });
+//   }
+//   esriId.on("credential-create", function (e) {
+//       localStorage.setItem("storedLogin", JSON.stringify(esriId.toJSON()));
+//   });
 
 const webmap = new WebMap({
   portalItem: {
@@ -65,7 +65,7 @@ const printParams = new PrintParameters({
 function printResult(result) {
   
   // Voegt het token toe aan de url, SSO werkt niet op deze request.
-  result.url = result.url + "/?token=" + JSON.parse(localStorage.storedLogin).credentials[0].token;
+  // result.url = result.url + "/?token=" + JSON.parse(localStorage.storedLogin).credentials[0].token;
   console.log(result.url)
   window.open(result.url, "mozillaTab");
 }
@@ -87,7 +87,7 @@ view.on("double-click", function(event){
 
 });
 
-view.on("focus", function(f){
-  const myToken = JSON.parse(localStorage.storedLogin).credentials[0].token;
-  console.log("jouw token is: " + myToken);
-});
+// view.on("focus", function(f){
+//   const myToken = JSON.parse(localStorage.storedLogin).credentials[0].token;
+//   console.log("jouw token is: " + myToken);
+// });

@@ -1,15 +1,35 @@
-# ArcGIS Maps SDK for JavaScript with Vite and TypeScript
+# Esri REST print with token issue
 
-This repo demonstrates how to use [@arcgis/core](https://www.npmjs.com/package/@arcgis/core) ES modules with [Vite](https://vitejs.dev/).
+This repo is constructed from the template https://github.com/Esri/jsapi-resources/tree/main/esm-samples/jsapi-vite-ts
+
+## Purpose
+
+This repository is a sample to demonstrate that there is a bug in the Javascript API.
+Regarding the `esri/rest/print`, after setting the `virtualDirsSecurityEnabled` to true on our Enterprise server.
 
 ## Get Started
 
-Run `npm install` and then start adding modules.
+Set your `virtualDirsSecurityEnabled` to true according to the manual: 
+https://developers.arcgis.com/rest/enterprise-administration/server/securityconfig.htm
 
-For a list of all available `npm` commands see `scripts` in `package.json`.
+Clone this repo.
 
-For additional information, see the [Build with ES modules](https://developers.arcgis.com/javascript/latest/es-modules/) Guide topic in the SDK.
+Edit the `./src/main.ts` file. Edit the parameters on 
+`portalAdres`
+`appId`
+`webmapId`
+`printUrl`
 
-## Learn More
+Run `npm install` and then `npm run dev`
 
-You can learn more in the [Vite guides](https://vitejs.dev/guide/).
+double click on the map, it triggers the print action.
+
+See, not working...
+The print is executed, but url cannot be opened. You do not have a token to open the url.
+
+If you don't see anything showing up. Check your ad blocker, or click on the link on the console (F12 for dev-tools)
+
+## Resolution
+
+Uncomment the lines 27..35 and 68
+If you want to see your own token in the console uncomment also 90..93
